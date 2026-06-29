@@ -11,4 +11,13 @@ Colonna Targa
 	Corretto manualmente NaN in NA (Napoli)
 Comune NaN
 	Corretto in "None", in provincia di Torino
+
 ________________________________________________________________________________________________________
+
+--- Elenco incidenti 2020_2024 ---
+Niente pulizia
+
+________________________________________________________________________________________________________
+
+--- Complessivo ---
+Corretto alcuni codici provincia manualmente prima del Join, per evitare NaN in Ripartizione geografica, Regione e Provincia/Uts
