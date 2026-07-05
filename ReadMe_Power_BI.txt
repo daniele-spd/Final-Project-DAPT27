@@ -1,9 +1,12 @@
+--- Nota iniziale ---
+Mi sono reso conto dopo aver fatto tutti i miei test che la traccia era in inglese, quindi nel dubbio ho cambiato tutti i nomi in inglese con Power Query e rinominando anche le misure
+
+Dopo aver trovato diversi problemi nella regressione lineare, ho capito che aveva letto male i valori (il separatore decimale)
+
+________________________________________________________________________________________________________
 --- Importazione dati ---
 Non legge bene i decimali del CSV perché ha separatore "." come nello standard inglese
 Quindi come secondo step ho aggiunto Replaced Value di "." con "," e poi nel Changed Type ho messo decimale alla colonna della Superficie (unica non intera)
-
-Coordinate ripartizioni
-Vedi nota in Modifiche dati
 
 ________________________________________________________________________________________________________
 --- Modifiche dati ---
@@ -24,8 +27,9 @@ Comune = in realtà ho lasciato Uncategorized perchè faceva casino, ma ho fatto
 	Creato la relazione tra la tabella dei fatti e la tabella delle dimensioni appena creata
 	Reso geografiche Latitudine e Longitudine, mettendo come Path ID la ripartizione
 
+
 ________________________________________________________________________________________________________
---- Creazione colonne e misure ---
+--- Creazione tabelle, colonne e misure ---
 Creato tabella 
 	Coordinate ripartizioni (vedi sopra)
 	Codici tipo di dato -> Tabella delle dimensioni per avere in visualizzazione un testo più parlante rispetto ai codici
@@ -35,5 +39,16 @@ Creato colonna calcolata
 
 Creato misura
 	Densità di popolazione -> Meglio misura per aggregazione e perché rimane dinamico con i filtri
-	Valore relativo_superficie e Valore relativo_1000abitanti -> Idem
-	Valore, valore anno precedente e variazione % -> Per identificare i comuni in cui la situazione peggiora/migliora
+	Valore relativo_superficie e Valore relativo_1000abitanti
+	REGRESSIONE LINEARE IN SOSPESO
+	Feriti/Morti per incidenti -> Usato REMOVEFILTERS e cambiato il Filter Context con CALCULATE
+	Medie italiane -> Come sopra, rimuovendo anche il filtro sulla Municipality perché sono in pagina Drill through
+	Popolazione coinvolta/ferita/ecc. Ho dei doppioni perché se metto il valore complessivo in tabella con Category mi basta uno solo, ma se avessi voluto usarli singolarmente li avevo creati
+
+	ALTRE MISURE PER LA REGRESSIONE LINEARE, DEVO DESCRIVERLE MA PREFERISCO FARE COMMIT NEL FRATTEMPO
+
+Gerarchia
+	Region
+	Province
+	Municipality
+	Utile per i grafici con drill down sulla Location
