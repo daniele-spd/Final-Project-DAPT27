@@ -40,15 +40,20 @@ Creato colonna calcolata
 Creato misura
 	Densità di popolazione -> Meglio misura per aggregazione e perché rimane dinamico con i filtri
 	Valore relativo_superficie e Valore relativo_1000abitanti
-	REGRESSIONE LINEARE IN SOSPESO
+	Incidenti regressione -> con pendenza e intercetta di Python, calcolo il valore predetto di incidenti. Stesso discorso cambiando i valori della regressione per ottenere minimo e massimo predetti al 95% di confidenza. In tutti i casi, avendo intercetta negativa, ho notato che nei comuni piccoli sarebbe risultato un numero negativo di incidenti quindi in quel caso ho fatto risultare 0 con MAX
 	Feriti/Morti per incidenti -> Usato REMOVEFILTERS e cambiato il Filter Context con CALCULATE
 	Medie italiane -> Come sopra, rimuovendo anche il filtro sulla Municipality perché sono in pagina Drill through
 	Popolazione coinvolta/ferita/ecc. Ho dei doppioni perché se metto il valore complessivo in tabella con Category mi basta uno solo, ma se avessi voluto usarli singolarmente li avevo creati
-
-	ALTRE MISURE PER LA REGRESSIONE LINEARE, DEVO DESCRIVERLE MA PREFERISCO FARE COMMIT NEL FRATTEMPO
 
 Gerarchia
 	Region
 	Province
 	Municipality
 	Utile per i grafici con drill down sulla Location
+
+Field parameter
+	Selettore di feriti/morti per incidente -> Alla fine non usato perché non funzionava come avrei sperato
+
+________________________________________________________________________________________________________
+--- Nota finale ---
+Sono consapevole che usare un solo file non è la strategia migliore computazionalmente, sarebbe stato meglio avere una tabella dei fatti con solo codici numerici e avere le tabelle delle dimensioni con corrispondenza tra codici e regioni/province ecc
