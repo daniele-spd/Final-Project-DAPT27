@@ -1,7 +1,7 @@
 '''
-Il file eseguibile funziona se esiste una cartella "C:/Users/Computer/Downloads"
 Chiede in input l'anno/gli anni da scaricare (devono essere consecutivi)
 Scarica tutti i file CSV richiesti (finiscono nella cartella download del computer)
+Il file eseguibile chiede in input di incollare il percorso della cartella di Download
 Cerca tutti i file CSV che hanno un nome simile a quello dei file appena scaricati
 Se non esiste già, crea una cartella "Dataset scraping" nei download e ci sposta dentro i file 
 Ciclo for finale: se non ci sono anni mancanti, esce un messaggio, altrimenti scarica un anno alla volta (per evitare il controllo sulla consecutività degli anni mancanti e per velocizzare le singole richieste API)
@@ -57,7 +57,9 @@ time.sleep(5)
 ######################## Ciclo for di spostamento ########################
 
 # Scelgo solo i file che sono nei download, che sono CSV e si chiamano in un certo modo
-os.chdir(r"C:\Users\Computer\Downloads")
+Cartella_download = input("Incolla qui il percorso della tua cartella Download (esempio C:/Users/Computer/Downloads)").strip('"') #altrimenti rimangono le virgolette
+# os.chdir(r"C:\Users\Computer\Downloads")
+os.chdir(Cartella_download)
 File_da_spostare = []
 Download = os.listdir()
 for f in Download:
@@ -68,8 +70,8 @@ for f in Download:
 os.makedirs("Dataset scraping", exist_ok = True)
 
 # Qui non servono controlli perchè la directory Download credo che esista in tutti i computer, quella in cui spostare i file l'ho appena creata io se non esisteva già
-Partenza = r"C:\Users\Computer\Downloads"
-Destinazione = r"C:\Users\Computer\Downloads\Dataset scraping"
+Partenza = Cartella_download
+Destinazione = os.path.join(Cartella_download, "Dataset scraping") #Inizialmente era senza path join, con Cartella Download + "\Dataset scraping" ma mi dava un warning
 for f in File_da_spostare:
     os.rename(os.path.join(Partenza, f),
               os.path.join(Destinazione, f))
