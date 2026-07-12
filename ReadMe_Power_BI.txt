@@ -1,4 +1,6 @@
 --- Nota iniziale ---
+Il percorso della query per importare i dati dal file "Complessivo.csv" è assoluto, quindi va cambiato con il percorso del file della repository.
+
 Mi sono reso conto dopo aver fatto tutti i miei test che la traccia era in inglese, quindi nel dubbio ho cambiato tutti i nomi in inglese con Power Query e rinominando anche le misure
 
 Dopo aver trovato diversi problemi nella regressione lineare, ho capito che aveva letto male i valori (il separatore decimale)
